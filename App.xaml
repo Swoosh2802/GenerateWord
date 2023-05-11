@@ -1,0 +1,10 @@
+﻿<Application x:Class="MacValvesWordGenerate.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MacValvesWordGenerate"
+             xmlns:viewmodels="clr-namespace:MacValvesWordGenerate.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <viewmodels:ViewModelLocator x:Key="Locator" />
+    </Application.Resources>
+</Application>

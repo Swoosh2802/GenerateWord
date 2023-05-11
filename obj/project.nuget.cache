@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "7+iaQXuD0ed/DNMQ1NYIa/+BroEr91GoGs9Bfu5r4Pi/O43bY+9XlHATl8Pgu5OGsjOlLKDbGWgKon/npwdv5Q==",
+  "success": true,
+  "projectFilePath": "C:\\Mac-valves\\MacValvesWordGenerate\\MacValvesWordGenerate.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Flore\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.5\\microsoft.netcore.app.ref.7.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}
