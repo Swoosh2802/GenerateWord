@@ -10,6 +10,16 @@ namespace MacValvesWordGenerate.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public string PeopleName { get; set; }
+
+        private String nameInput;
+        public String NameInput
+        {
+            get { return nameInput; }
+            set
+            {
+                nameInput = value;
+            }
+        }
         public ICommand PressNameButton { get; }
         public WordViewModel()
         {
@@ -41,8 +51,7 @@ namespace MacValvesWordGenerate.ViewModels
 
         private void NameButton()
         {
-            Console.WriteLine("appui");
-            PeopleName = "poueeet";
+            PeopleName = NameInput;
             NotifyPropertyChanged(nameof(PeopleName));
         }
     }

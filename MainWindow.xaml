@@ -12,7 +12,7 @@
             <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
 
                 <TextBox x:Name="nameInput"
-                         Width="300" HorizontalAlignment="Left"/>
+                         Width="300" HorizontalAlignment="Left" Text="{Binding Path=NameInput}"/>
 
             <Button Content="Hello button"  Command ="{Binding PressNameButton}"/>
             </StackPanel>

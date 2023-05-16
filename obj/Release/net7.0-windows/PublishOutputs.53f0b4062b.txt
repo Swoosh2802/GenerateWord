@@ -1,0 +1,5 @@
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValvesWordGenerate.exe
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValvesWordGenerate.dll
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValvesWordGenerate.deps.json
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValvesWordGenerate.runtimeconfig.json
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValvesWordGenerate.pdb
