@@ -8,15 +8,11 @@
         Title="MainWindow" Height="450" Width="800"
         DataContext="{Binding Source={StaticResource Locator}, Path=ViewModel}">
     <StackPanel>
-            <TextBlock Text="What's your name?"/>
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
-
-                <TextBox x:Name="nameInput"
-                         Width="300" HorizontalAlignment="Left" Text="{Binding Path=NameInput}"/>
-
-            <Button Content="Valider"  Command ="{Binding PressNameButton}"/>
-            </StackPanel>
-            <TextBlock Text="{Binding PeopleName}"/>
+        <TextBlock Text="What's your name?"/>
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+        <TextBox x:Name="nameInput"
+                            Width="300" HorizontalAlignment="Left" Text="{Binding Path=NameInput, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
         <Button Content="Générer"  Command ="{Binding PressGenerateButton}"/>
     </StackPanel>
 </Window>

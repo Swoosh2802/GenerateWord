@@ -20,12 +20,10 @@ namespace MacValvesWordGenerate.ViewModels
                 nameInput = value;
             }
         }
-        public ICommand PressNameButton { get; }
         public ICommand PressGenerateButton { get; }
         public WordViewModel()
         {
             PeopleName = "test";
-            PressNameButton = ParameterlessRelayCommand.From(NameButton);
             PressGenerateButton = ParameterlessRelayCommand.From(GenerateButton);
         }
 
@@ -34,19 +32,13 @@ namespace MacValvesWordGenerate.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void NameButton()
-        {
-            PeopleName = NameInput;
-            NotifyPropertyChanged(nameof(PeopleName));
-        }
-
         private void GenerateButton()
         {
             var app = new Application();
             Application wordApp = new Application { Visible = true };
             Document aDoc = wordApp.Documents.Open("C:\\template.docx", ReadOnly: false, Visible: true);
             aDoc.Activate();
-            WordManager.FindAndReplace(wordApp, "{{NAME}}", PeopleName);
+            WordManager.FindAndReplace(wordApp, "{{NAME}}", nameInput);
         }
     }
 }
