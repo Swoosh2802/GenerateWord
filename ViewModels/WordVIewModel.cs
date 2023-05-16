@@ -1,7 +1,7 @@
 ﻿using Bindings.Commands;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Input;
 
 namespace MacValvesWordGenerate.ViewModels
@@ -21,39 +21,32 @@ namespace MacValvesWordGenerate.ViewModels
             }
         }
         public ICommand PressNameButton { get; }
+        public ICommand PressGenerateButton { get; }
         public WordViewModel()
         {
             PeopleName = "test";
             PressNameButton = ParameterlessRelayCommand.From(NameButton);
+            PressGenerateButton = ParameterlessRelayCommand.From(GenerateButton);
         }
-
-        //public string ParagraphNumber => "Paragraphe #" + (_reader.CurrentParagraphIndex + 1);
-
-        //public string ParagraphContent => _reader.CurrentText;
-
-        //public ObservableCollection<ActionButton> Actions => _actions;
-
-        //public ObservableCollection<ProgressListItem> Progress => _observableProgress;
-
 
         private void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
-        public void Refresh()
-        {
-            //NotifyPropertyChanged(nameof(ParagraphContent));
-            //NotifyPropertyChanged(nameof(ParagraphNumber));
-        }
-
-
         private void NameButton()
         {
             PeopleName = NameInput;
             NotifyPropertyChanged(nameof(PeopleName));
         }
-    }
 
+        private void GenerateButton()
+        {
+            var app = new Application();
+            Application wordApp = new Application { Visible = true };
+            Document aDoc = wordApp.Documents.Open("C:\\template.docx", ReadOnly: false, Visible: true);
+            aDoc.Activate();
+            WordManager.FindAndReplace(wordApp, "{{NAME}}", PeopleName);
+        }
+    }
 }

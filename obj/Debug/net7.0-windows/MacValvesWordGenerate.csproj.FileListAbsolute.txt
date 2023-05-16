@@ -21,3 +21,6 @@ C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\refint\MacValvesWor
 C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\MacValvesWordGenerate.pdb
 C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\MacValvesWordGenerate.genruntimeconfig.cache
 C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\ref\MacValvesWordGenerate.dll
+C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\Interop.Microsoft.Office.Interop.Word.dll
+C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\Interop.Microsoft.Office.Core.dll
+C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\MacValvesWordGenerate.csproj.ResolveComReference.cache

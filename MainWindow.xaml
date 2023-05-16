@@ -14,8 +14,9 @@
                 <TextBox x:Name="nameInput"
                          Width="300" HorizontalAlignment="Left" Text="{Binding Path=NameInput}"/>
 
-            <Button Content="Hello button"  Command ="{Binding PressNameButton}"/>
+            <Button Content="Valider"  Command ="{Binding PressNameButton}"/>
             </StackPanel>
             <TextBlock Text="{Binding PeopleName}"/>
+        <Button Content="Générer"  Command ="{Binding PressGenerateButton}"/>
     </StackPanel>
 </Window>
