@@ -36,7 +36,8 @@ namespace MacValvesWordGenerate.ViewModels
         {
             var app = new Application();
             Application wordApp = new Application { Visible = true };
-            Document aDoc = wordApp.Documents.Open("C:\\template.docx", ReadOnly: false, Visible: true);
+            //var test = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\template.docx";
+            Document aDoc = wordApp.Documents.Open(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+"\\template.docx", ReadOnly: false, Visible: true);
             aDoc.Activate();
             WordManager.FindAndReplace(wordApp, "{{NAME}}", nameInput);
         }

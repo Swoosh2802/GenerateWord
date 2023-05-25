@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MacValvesWordGenerate"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Génération Word" Height="450" Width="800"
         DataContext="{Binding Source={StaticResource Locator}, Path=ViewModel}">
     <StackPanel>
-        <TextBlock Text="What's your name?"/>
+        <TextBox Background="Transparent"
+         BorderThickness="0"
+        Text="What's your name?"
+         IsReadOnly="True"
+         TextWrapping="Wrap"/>
         <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
-        <TextBox x:Name="nameInput"
-                            Width="300" HorizontalAlignment="Left" Text="{Binding Path=NameInput, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="nameInput" Width="300" HorizontalAlignment="Left" Text="{Binding Path=NameInput, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <Button Content="Générer"  Command ="{Binding PressGenerateButton}"/>
     </StackPanel>
