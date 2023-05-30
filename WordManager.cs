@@ -1,4 +1,6 @@
 ﻿using Microsoft.Office.Interop.Word;
+using System;
+using System.Windows.Controls;
 
 namespace MacValvesWordGenerate
 {
@@ -27,6 +29,5 @@ namespace MacValvesWordGenerate
                 ref matchWildCards, ref matchSoundsLike, ref matchAllWordForms, ref forward, ref wrap, ref format, ref replaceWithText, ref replace,
                 ref matchKashida, ref matchDiacritics, ref matchAlefHamza, ref matchControl);
         }
-
     }
 }

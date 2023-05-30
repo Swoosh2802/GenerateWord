@@ -11,5 +11,10 @@ namespace MacValvesWordGenerate
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged()
+        {
+
+        }
     }
 }
