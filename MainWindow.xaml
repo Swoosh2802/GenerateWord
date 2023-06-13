@@ -20,7 +20,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
@@ -30,27 +30,47 @@
                  BorderThickness="0"
                  Text="What's your surname?"
                  IsReadOnly="True"
+                 HorizontalAlignment="Left"  
                  TextWrapping="Wrap" Height="21"/>
                 <TextBox 
                 x:Name="surnameInput" 
                 Height="20"
                 Text="{Binding NameInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <TextBox
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="What's your name"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 Margin="0,0,21,0"
+                 TextWrapping="Wrap" Height="20"/>
+                <TextBox 
+                x:Name="nameInput" 
+                HorizontalAlignment="Right"
+                Height="20"
+                Text="{Binding NameInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                <TextBox        
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="City"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"  
+                 Margin="0,0,97,0"
+                 TextWrapping="Wrap" Height="20"/>
+                <TextBox
+                Height="20"
+                Text="{Binding CityInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+            </StackPanel>
         </Grid>
         <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
 
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-            <TextBox        
-                 Background="Transparent"
-                 BorderThickness="0"
-                 Text="What's your name?"
-                 IsReadOnly="True"
-                 TextWrapping="Wrap"/>
-            <TextBox 
-                x:Name="nameInput"
-                HorizontalAlignment="Left" 
-                Text="{Binding NameInput, UpdateSourceTrigger=PropertyChanged}" Width="78" Margin="0,0,0,0"/>
+            
         </StackPanel>
         <Button Content="Générer" Command ="{Binding PressGenerateButton}" Margin="0,20,0,0"/>
     </StackPanel>

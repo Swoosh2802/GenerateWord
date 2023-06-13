@@ -7,8 +7,37 @@
   "targets": {
     ".NETCoreApp,Version=v7.0": {
       "MacValvesWordGenerate/1.0.0": {
+        "dependencies": {
+          "Microsoft.Office.Interop.Word": "15.0.0.0",
+          "Microsoft.Vbe.Interop": "15.0.0.0",
+          "office": "15.0.0.0"
+        },
         "runtime": {
           "MacValvesWordGenerate.dll": {}
+        }
+      },
+      "Microsoft.Office.Interop.Word/15.0.0.0": {
+        "runtime": {
+          "Microsoft.Office.Interop.Word.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4603.1000"
+          }
+        }
+      },
+      "Microsoft.Vbe.Interop/15.0.0.0": {
+        "runtime": {
+          "Microsoft.Vbe.Interop.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4561.1000"
+          }
+        }
+      },
+      "office/15.0.0.0": {
+        "runtime": {
+          "office.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4613.1000"
+          }
         }
       }
     }
@@ -16,6 +45,21 @@
   "libraries": {
     "MacValvesWordGenerate/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Office.Interop.Word/15.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Vbe.Interop/15.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "office/15.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }
