@@ -6,7 +6,7 @@ namespace MacValvesWordGenerate.ViewModels
     {
         public ViewModelLocator()
         {
-            ViewModel = new WordViewModel();
+         ViewModel = new WordViewModel();
         }
 
         public WordViewModel ViewModel { get; }
