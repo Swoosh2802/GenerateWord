@@ -89,6 +89,17 @@ namespace MacValvesWordGenerate.ViewModels
             TemplatePath = frc.ResourceIdentifier;
         }
 
+
+        private string generatePeopleText()
+        {
+            string toReturn = "";
+            foreach (People poeple in someCollection){
+                toReturn += "- " + poeple.Name + " " + poeple.Surname + " (" + poeple.Function + " - " + poeple.Customer + ")"+ Environment.NewLine;
+            }
+
+            return toReturn;
+        }
+
         private void GenerateButton()
         {
             var app = new Application();
@@ -101,7 +112,9 @@ namespace MacValvesWordGenerate.ViewModels
             range.Find.Execute(FindText: "{{NAME}}", ReplaceWith: nameInput, Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
-            
+
+            range.Find.Execute(FindText: "{{PARTICIPANTS}}", ReplaceWith: generatePeopleText(), Replace: WdReplace.wdReplaceAll);
+
             foreach (Section section in aDoc.Sections)
             {
                 Microsoft.Office.Interop.Word.Range headerRange = section.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
@@ -118,5 +131,6 @@ namespace MacValvesWordGenerate.ViewModels
                 footerRange.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
             }
         }
+
     }
 }

@@ -84,21 +84,47 @@
         </StackPanel>
 
         <StackPanel>
-            <Button Content="Add TextBox" Command="{Binding TestCommand}"/>
+            <Button Content="Ajouter un participant" Command="{Binding TestCommand}"/>
             <ItemsControl ItemsSource="{Binding SomeCollection}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <TextBox Background="Transparent"
+                 BorderThickness="0"
+                 Text="Name"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap" Height="20"/>
                             <TextBox IsReadOnly="False" Height="20" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+                            <TextBox        
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="Surname"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap" Height="20"/>
                             <TextBox IsReadOnly="False" Height="20" Text="{Binding Surname}" Width="143"/>
+                            <TextBox        
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="Function"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap" Height="20"/>
                             <TextBox IsReadOnly="False" Height="20" Text="{Binding Function}" Width="143"/>
+                            <TextBox        
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="Customer"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap" Height="20"/>
                             <TextBox IsReadOnly="False" Height="20" Text="{Binding Customer}" Width="143"/>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </StackPanel>
-
         <Button Content="Générer" Command ="{Binding PressGenerateButton}" Margin="0,20,0,0"/>
     </StackPanel>
 </Window>
