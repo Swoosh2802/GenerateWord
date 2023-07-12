@@ -24,34 +24,21 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Margin="-15,24,30,1" Grid.RowSpan="2">
-                <TextBox        
-                 Background="Transparent"
-                 BorderThickness="0"
-                 Text="Surname"
-                 IsReadOnly="True"
-                 HorizontalAlignment="Left"  
-                 TextWrapping="Wrap" Height="21"/>
-                <TextBox 
-                x:Name="surnameInput" 
-                Height="20"
-                Text="{Binding NameInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="0">
                 <TextBox
                  Background="Transparent"
                  BorderThickness="0"
-                 Text="Name"
+                 Text="Customer"
                  IsReadOnly="True"
                  HorizontalAlignment="Left"
                  TextWrapping="Wrap" Height="20"/>
                 <TextBox 
-                x:Name="nameInput" 
+                x:Name="customerInput" 
                 HorizontalAlignment="Right"
                 Height="20"
-                Text="{Binding NameInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+                Text="{Binding CustomerInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="225,24,62,24" Grid.RowSpan="3">
+            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="1">
                 <TextBox        
                  Background="Transparent"
                  BorderThickness="0"
@@ -63,8 +50,8 @@
                 Height="20"
                 Text="{Binding CityInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" Margin="185,0,62,0">
-                <TextBox        
+            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="2">
+                <TextBox
                  Background="Transparent"
                  BorderThickness="0"
                  Text="Application"
@@ -72,20 +59,15 @@
                  HorizontalAlignment="Left"
                  TextWrapping="Wrap" Height="20"/>
                 <TextBox
+                HorizontalAlignment="Right"
                 Height="20"
                 Text="{Binding ApplicationInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
             </StackPanel>
         </Grid>
-        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-
-        </StackPanel>
 
         <StackPanel>
             <Button Content="Ajouter un participant" Command="{Binding TestCommand}"/>
-            <ItemsControl ItemsSource="{Binding SomeCollection}">
+            <ItemsControl ItemsSource="{Binding PeopleCollection}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -126,5 +108,12 @@
             </ItemsControl>
         </StackPanel>
         <Button Content="Générer" Command ="{Binding PressGenerateButton}" Margin="0,20,0,0"/>
+        <TextBox
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="{Binding FileNeeded}"
+                 IsReadOnly="True"
+                 HorizontalAlignment="center"
+                 TextWrapping="Wrap" Height="20" Foreground="Red"/>
     </StackPanel>
 </Window>

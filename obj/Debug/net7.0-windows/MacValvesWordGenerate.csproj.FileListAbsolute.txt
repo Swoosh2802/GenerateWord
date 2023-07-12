@@ -30,3 +30,4 @@ C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\Interop.Accessibili
 C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\Interop.Microsoft.Office.Interop.Access.Dao.dll
 C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\Interop.ACTIVEXLib.dll
 C:\Mac-valves\MacValvesWordGenerate\obj\Debug\net7.0-windows\MacValvesWordGenerate.csproj.ResolveComReference.cache
+C:\Mac-valves\MacValvesWordGenerate\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
