@@ -13,7 +13,7 @@
                 <MenuItem Header="Changer de template"  Command ="{Binding PressChooseTemplateButton}"/>
             </MenuItem>
         </Menu>
-        <Grid HorizontalAlignment="Center" Width="700" Height="73">
+        <Grid HorizontalAlignment="Center" Width="700" Height="60">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -64,7 +64,57 @@
                 Text="{Binding ApplicationInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
             </StackPanel>
         </Grid>
-
+        <Grid HorizontalAlignment="Center" Width="800" Height="55">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="13.333" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="0">
+                <TextBox
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="Distributor name"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap" Height="20"/>
+                <TextBox 
+                x:Name="DistributorName" 
+                HorizontalAlignment="Right"
+                Height="20"
+                Text="{Binding DistributorName, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="1">
+                <TextBox        
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="Distributor surname"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap" Height="20"/>
+                <TextBox
+                Height="20"
+                Text="{Binding DistributorSurname, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="2">
+                <TextBox
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="Distributor function"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap" Height="20"/>
+                <TextBox
+                HorizontalAlignment="Right"
+                Height="20"
+                Text="{Binding DistributorFunction, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+            </StackPanel>
+        </Grid>
         <StackPanel>
             <Button Content="Ajouter un participant" Command="{Binding TestCommand}"/>
             <ItemsControl ItemsSource="{Binding PeopleCollection}">

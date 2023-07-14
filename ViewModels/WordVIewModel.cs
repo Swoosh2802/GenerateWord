@@ -22,6 +22,9 @@ namespace MacValvesWordGenerate.ViewModels
         private string cityInput;
         private string applicationInput;
         private string fileNeeded;
+        private string distributorName;
+        private string distributorSurname;
+        private string distributorFunction;
         private ObservableCollection<People> peopleCollection;
         public ObservableCollection<People> PeopleCollection
         {
@@ -36,7 +39,6 @@ namespace MacValvesWordGenerate.ViewModels
             }
         }
         public ICommand TestCommand { get; private set; }
-
 
         public string CityInput
         {
@@ -66,7 +68,6 @@ namespace MacValvesWordGenerate.ViewModels
                 customerInput = value;
             }
         }
-
         public string FileNeeded
         {
             get { return fileNeeded; }
@@ -74,6 +75,21 @@ namespace MacValvesWordGenerate.ViewModels
             {
                 fileNeeded = value;
             }
+        }
+        public string DistributorName
+        {
+            get => distributorName;
+            set { distributorName = value; }
+        }
+        public string DistributorSurname
+        {
+            get => distributorSurname;
+            set { distributorSurname = value; }
+        }
+        public string DistributorFunction
+        {
+            get => distributorFunction;
+            set { distributorFunction = value; }
         }
 
         public ICommand PressGenerateButton { get; }
@@ -131,12 +147,11 @@ namespace MacValvesWordGenerate.ViewModels
         }
 
 
-
         private string GeneratePeopleText()
         {
             string toReturn = "";
             foreach (People poeple in PeopleCollection){
-                toReturn += "- " + poeple.Name + " " + poeple.Surname + " (" + poeple.Function + " - " + poeple.Customer + ")"+ Environment.NewLine;
+                toReturn += "- " + poeple.Name + " " + poeple.Surname + " (" + poeple.Function + " - " + poeple.Customer + ")"+ "\r";
             }
 
             return toReturn;
@@ -161,7 +176,9 @@ namespace MacValvesWordGenerate.ViewModels
                 range.Find.Execute(FindText: "{{CUSTOMER}}", ReplaceWith: customerInput, Replace: WdReplace.wdReplaceAll);
                 range.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
                 range.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
-
+                range.Find.Execute(FindText: "{{DistributorName}}", ReplaceWith: distributorName, Replace: WdReplace.wdReplaceAll);
+                range.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
+                range.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
                 range.Find.Execute(FindText: "{{PARTICIPANTS}}", ReplaceWith: GeneratePeopleText(), Replace: WdReplace.wdReplaceAll);
                 range.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateTime.Now.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
 
@@ -171,7 +188,9 @@ namespace MacValvesWordGenerate.ViewModels
                     headerRange.Find.Execute(FindText: "{{CUSTOMER}}", ReplaceWith: customerInput, Replace: WdReplace.wdReplaceAll);
                     headerRange.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
                     headerRange.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
-
+                    headerRange.Find.Execute(FindText: "{{DistributorName}}", ReplaceWith: distributorName, Replace: WdReplace.wdReplaceAll);
+                    headerRange.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
+                    headerRange.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
                     headerRange.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateTime.Now.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
                 }
 
@@ -181,7 +200,9 @@ namespace MacValvesWordGenerate.ViewModels
                     footerRange.Find.Execute(FindText: "{{CUSTOMER}}", ReplaceWith: customerInput, Replace: WdReplace.wdReplaceAll);
                     footerRange.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
                     footerRange.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
-
+                    footerRange.Find.Execute(FindText: "{{DistributorName}}", ReplaceWith: distributorName, Replace: WdReplace.wdReplaceAll);
+                    footerRange.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
+                    footerRange.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
                     footerRange.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateTime.Now.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
                 }
             }
