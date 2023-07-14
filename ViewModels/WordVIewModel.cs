@@ -159,23 +159,33 @@ namespace MacValvesWordGenerate.ViewModels
             }
             else
             {
-                var app = new Application();
-                Application wordApp = new Application { Visible = true };
-                Document aDoc = wordApp.Documents.Open(test, ReadOnly: false, Visible: true);
-                aDoc.Activate();
-                Microsoft.Office.Interop.Word.Range range = aDoc.Content;
-                GenerateWord(range);
-
-                foreach (Section header in aDoc.Sections)
+                try
                 {
-                    Microsoft.Office.Interop.Word.Range headerRange = header.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
-                    GenerateWord(headerRange);
+                    var app = new Application();
+                    Application wordApp = new Application { Visible = true };
+                    Document aDoc = wordApp.Documents.Open(test, ReadOnly: false, Visible: true);
+                    aDoc.Activate();
+                    Microsoft.Office.Interop.Word.Range range = aDoc.Content;
+                    GenerateWord(range);
+
+                    foreach (Section header in aDoc.Sections)
+                    {
+                        Microsoft.Office.Interop.Word.Range headerRange = header.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                        GenerateWord(headerRange);
+                    }
+
+                    foreach (Section footer in aDoc.Sections)
+                    {
+                        Microsoft.Office.Interop.Word.Range footerRange = footer.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                        GenerateWord(footerRange);
+                    }
+                    FileNeeded = "";
+                    NotifyPropertyChanged("FileNeeded");
                 }
-
-                foreach (Section footer in aDoc.Sections)
+                catch (System.Runtime.InteropServices.COMException)
                 {
-                    Microsoft.Office.Interop.Word.Range footerRange = footer.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
-                    GenerateWord(footerRange);
+                    FileNeeded = "Le fichier de template choisi est incorrect";
+                    NotifyPropertyChanged("FileNeeded");
                 }
             }
         }
