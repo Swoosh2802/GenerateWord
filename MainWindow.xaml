@@ -116,7 +116,7 @@
             </StackPanel>
         </Grid>
         <StackPanel>
-            <Button Content="Ajouter un participant" Command="{Binding TestCommand}"/>
+            <Button Content="Ajouter un participant" Command="{Binding AddPeopleCommand}"/>
             <ItemsControl ItemsSource="{Binding PeopleCollection}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

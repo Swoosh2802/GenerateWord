@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace MacValvesWordGenerate.ViewModels
+﻿namespace MacValvesWordGenerate.ViewModels
 {
     public class ViewModelLocator
     {
         public ViewModelLocator()
         {
-         ViewModel = new WordViewModel();
+            ViewModel = new WordViewModel();
         }
 
         public WordViewModel ViewModel { get; }

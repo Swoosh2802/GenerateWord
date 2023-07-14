@@ -1,11 +1,9 @@
 ﻿using Microsoft.Office.Interop.Word;
-using System;
-using System.Windows.Controls;
 
 namespace MacValvesWordGenerate
 {
     public class WordManager
-    {   
+    {
         public static void FindAndReplace(Application doc, object findText, object replaceWithText)
         {
             //options

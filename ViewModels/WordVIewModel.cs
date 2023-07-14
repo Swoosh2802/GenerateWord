@@ -1,16 +1,12 @@
 ﻿using Bindings.Commands;
 using MacValvesWordGenerate.Model;
 using Microsoft.Office.Interop.Word;
+using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Windows.Controls;
 using System.Windows.Input;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Newtonsoft.Json;
-using System.Windows.Shapes;
-using System.Linq.Expressions;
 
 namespace MacValvesWordGenerate.ViewModels
 {
@@ -38,26 +34,23 @@ namespace MacValvesWordGenerate.ViewModels
                 NotifyPropertyChanged("PeopleCollection");
             }
         }
-        public ICommand TestCommand { get; private set; }
-
+        public ICommand AddPeopleCommand { get; private set; }
         public string CityInput
         {
             get { return cityInput; }
             set { cityInput = value; }
         }
-
         public string ApplicationInput
         {
             get { return applicationInput; }
             set { applicationInput = value; }
         }
-
         public string TemplatePath
         {
             get { return templatePath; }
             set
             {
-                templatePath = "Template: "+ value; NotifyPropertyChanged(nameof(TemplatePath));
+                templatePath = "Template: " + value; NotifyPropertyChanged(nameof(TemplatePath));
             }
         }
         public string CustomerInput
@@ -91,7 +84,6 @@ namespace MacValvesWordGenerate.ViewModels
             get => distributorFunction;
             set { distributorFunction = value; }
         }
-
         public ICommand PressGenerateButton { get; }
         public ICommand PressChooseTemplateButton { get; }
         public WordViewModel()
@@ -100,13 +92,13 @@ namespace MacValvesWordGenerate.ViewModels
             PressGenerateButton = ParameterlessRelayCommand.From(GenerateButton);
             PressChooseTemplateButton = ParameterlessRelayCommand.From(ChooseTemplateButton);
             PeopleCollection = new ObservableCollection<People>();
-            TestCommand = ParameterizedRelayCommand<People>.From(CommandMethod);
+            AddPeopleCommand = ParameterizedRelayCommand<People>.From(AddPeople);
         }
 
-        private void CommandMethod(object parameter)
+        private void AddPeople(object parameter)
         {
             NotifyPropertyChanged("PeopleCollection");
-            PeopleCollection.Add(new People("","","",""));
+            PeopleCollection.Add(new People("", "", "", ""));
         }
 
 
@@ -136,7 +128,7 @@ namespace MacValvesWordGenerate.ViewModels
                 {
                     string json = r.ReadToEnd();
                     toReturnPath = JsonConvert.DeserializeObject<string>(json);
-                    toReturnPath = toReturnPath.Substring(toReturnPath.IndexOf(" ")+1);
+                    toReturnPath = toReturnPath.Substring(toReturnPath.IndexOf(" ") + 1);
                     return toReturnPath;
                 }
             }
@@ -150,17 +142,18 @@ namespace MacValvesWordGenerate.ViewModels
         private string GeneratePeopleText()
         {
             string toReturn = "";
-            foreach (People poeple in PeopleCollection){
-                toReturn += "- " + poeple.Name + " " + poeple.Surname + " (" + poeple.Function + " - " + poeple.Customer + ")"+ "\r";
+            foreach (People poeple in PeopleCollection)
+            {
+                toReturn += "- " + poeple.Name + " " + poeple.Surname + " (" + poeple.Function + " - " + poeple.Customer + ")" + "\r";
             }
-
             return toReturn;
         }
 
         private void GenerateButton()
         {
             var test = TemplatePath[(TemplatePath.IndexOf(":") + 2)..];
-            if (test.Equals("")){
+            if (test.Equals(""))
+            {
                 FileNeeded = "Veuillez sélectionner un fichier de template";
                 NotifyPropertyChanged("FileNeeded");
             }
@@ -171,41 +164,33 @@ namespace MacValvesWordGenerate.ViewModels
                 Document aDoc = wordApp.Documents.Open(test, ReadOnly: false, Visible: true);
                 aDoc.Activate();
                 Microsoft.Office.Interop.Word.Range range = aDoc.Content;
-
-                range.Find.ClearFormatting();
-                range.Find.Execute(FindText: "{{CUSTOMER}}", ReplaceWith: customerInput, Replace: WdReplace.wdReplaceAll);
-                range.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
-                range.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
-                range.Find.Execute(FindText: "{{DistributorName}}", ReplaceWith: distributorName, Replace: WdReplace.wdReplaceAll);
-                range.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
-                range.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
-                range.Find.Execute(FindText: "{{PARTICIPANTS}}", ReplaceWith: GeneratePeopleText(), Replace: WdReplace.wdReplaceAll);
-                range.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateTime.Now.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
+                GenerateWord(range);
 
                 foreach (Section header in aDoc.Sections)
                 {
                     Microsoft.Office.Interop.Word.Range headerRange = header.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
-                    headerRange.Find.Execute(FindText: "{{CUSTOMER}}", ReplaceWith: customerInput, Replace: WdReplace.wdReplaceAll);
-                    headerRange.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
-                    headerRange.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
-                    headerRange.Find.Execute(FindText: "{{DistributorName}}", ReplaceWith: distributorName, Replace: WdReplace.wdReplaceAll);
-                    headerRange.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
-                    headerRange.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
-                    headerRange.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateTime.Now.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
+                    GenerateWord(headerRange);
                 }
 
                 foreach (Section footer in aDoc.Sections)
                 {
                     Microsoft.Office.Interop.Word.Range footerRange = footer.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
-                    footerRange.Find.Execute(FindText: "{{CUSTOMER}}", ReplaceWith: customerInput, Replace: WdReplace.wdReplaceAll);
-                    footerRange.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
-                    footerRange.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
-                    footerRange.Find.Execute(FindText: "{{DistributorName}}", ReplaceWith: distributorName, Replace: WdReplace.wdReplaceAll);
-                    footerRange.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
-                    footerRange.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
-                    footerRange.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateTime.Now.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
+                    GenerateWord(footerRange);
                 }
             }
+        }
+
+        private void GenerateWord(Microsoft.Office.Interop.Word.Range range)
+        {
+            range.Find.ClearFormatting();
+            range.Find.Execute(FindText: "{{CUSTOMER}}", ReplaceWith: customerInput, Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{DistributorName}}", ReplaceWith: distributorName, Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{PARTICIPANTS}}", ReplaceWith: GeneratePeopleText(), Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateTime.Now.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using files.Interfaces;
+﻿using files.Interfaces;
 using Microsoft.Win32;
 
 namespace MacValvesWordGenerate

@@ -3,7 +3,7 @@
 namespace MacValvesWordGenerate.Model
 {
     public class Report : IReport
-    { 
+    {
         public string _name;
         public Report(string name)
         {

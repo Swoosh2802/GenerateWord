@@ -17,22 +17,21 @@ namespace MacValvesWordGenerate.Model
         }
         public string Name
         {
-            get => _name;set => _name = value;
+            get => _name; set => _name = value;
         }
         public string Surname
         {
             get => _surname;
-            set => _surname = value;    
+            set => _surname = value;
         }
         public string Function
         {
             get => _function;
-            set => _function = value;  
+            set => _function = value;
         }
         public string Customer
         {
             get => _customer;
-
             set => _customer = value;
         }
 
