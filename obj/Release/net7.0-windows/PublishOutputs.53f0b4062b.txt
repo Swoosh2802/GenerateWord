@@ -3,3 +3,7 @@ C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValves
 C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValvesWordGenerate.deps.json
 C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValvesWordGenerate.runtimeconfig.json
 C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\MacValvesWordGenerate.pdb
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\Newtonsoft.Json.dll
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\Microsoft.Office.Interop.Word.dll
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\Microsoft.Vbe.Interop.dll
+C:\Mac-valves\MacValvesWordGenerate\bin\Release\net7.0-windows\publish\office.dll

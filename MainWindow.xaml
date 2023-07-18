@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MacValvesWordGenerate"
         mc:Ignorable="d"
-        Title="Génération Word" Height="450" Width="800"
+        Title="Génération Word" Height="450" Width="900"
         DataContext="{Binding Source={StaticResource Locator}, Path=ViewModel}">
     <StackPanel>
         <Menu>
@@ -13,16 +13,17 @@
                 <MenuItem Header="Changer de template"  Command ="{Binding PressChooseTemplateButton}"/>
             </MenuItem>
         </Menu>
-        <Grid HorizontalAlignment="Center" Width="700" Height="60">
+        <Grid HorizontalAlignment="Center" Width="800" Height="60">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="209*" />
+                <ColumnDefinition Width="191*" />
+                <ColumnDefinition Width="220*" />
+                <ColumnDefinition Width="180*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="13*" />
+                <RowDefinition Height="7*" />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="0">
                 <TextBox
@@ -62,6 +63,13 @@
                 HorizontalAlignment="Right"
                 Height="20"
                 Text="{Binding ApplicationInput, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="center" Grid.Row="1" Grid.Column="3">
+                <DatePicker
+                      SelectedDate="{Binding
+                                    Path=DateInput,
+                                    Mode=TwoWay}">
+                </DatePicker>
             </StackPanel>
         </Grid>
         <Grid HorizontalAlignment="Center" Width="800" Height="55">

@@ -6,6 +6,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace MacValvesWordGenerate.ViewModels
@@ -21,6 +22,7 @@ namespace MacValvesWordGenerate.ViewModels
         private string distributorName;
         private string distributorSurname;
         private string distributorFunction;
+        private DateTime dateInput;
         private ObservableCollection<People> peopleCollection;
         public ObservableCollection<People> PeopleCollection
         {
@@ -61,6 +63,11 @@ namespace MacValvesWordGenerate.ViewModels
                 customerInput = value;
             }
         }
+        public DateTime DateInput
+        {
+            get => dateInput;
+            set { dateInput = value; }
+        }
         public string FileNeeded
         {
             get { return fileNeeded; }
@@ -93,6 +100,7 @@ namespace MacValvesWordGenerate.ViewModels
             PressChooseTemplateButton = ParameterlessRelayCommand.From(ChooseTemplateButton);
             PeopleCollection = new ObservableCollection<People>();
             AddPeopleCommand = ParameterizedRelayCommand<People>.From(AddPeople);
+            DateInput = DateTime.Now;
         }
 
         private void AddPeople(object parameter)
@@ -168,17 +176,14 @@ namespace MacValvesWordGenerate.ViewModels
                     Microsoft.Office.Interop.Word.Range range = aDoc.Content;
                     GenerateWord(range);
 
-                    foreach (Section header in aDoc.Sections)
+                    foreach (Microsoft.Office.Interop.Word.Section section in aDoc.Sections)
                     {
-                        Microsoft.Office.Interop.Word.Range headerRange = header.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                        Microsoft.Office.Interop.Word.Range headerRange = section.Headers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
                         GenerateWord(headerRange);
-                    }
-
-                    foreach (Section footer in aDoc.Sections)
-                    {
-                        Microsoft.Office.Interop.Word.Range footerRange = footer.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
+                        Microsoft.Office.Interop.Word.Range footerRange = section.Footers[WdHeaderFooterIndex.wdHeaderFooterPrimary].Range;
                         GenerateWord(footerRange);
                     }
+
                     FileNeeded = "";
                     NotifyPropertyChanged("FileNeeded");
                 }
@@ -200,7 +205,7 @@ namespace MacValvesWordGenerate.ViewModels
             range.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{PARTICIPANTS}}", ReplaceWith: GeneratePeopleText(), Replace: WdReplace.wdReplaceAll);
-            range.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateTime.Now.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateInput.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
         }
     }
 }
