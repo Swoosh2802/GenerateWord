@@ -98,18 +98,6 @@
                 Text="{Binding DistributorName, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="1">
-                <TextBox        
-                 Background="Transparent"
-                 BorderThickness="0"
-                 Text="Distributor surname"
-                 IsReadOnly="True"
-                 HorizontalAlignment="Left"
-                 TextWrapping="Wrap" Height="20"/>
-                <TextBox
-                Height="20"
-                Text="{Binding DistributorSurname, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="2">
                 <TextBox
                  Background="Transparent"
                  BorderThickness="0"
@@ -122,9 +110,21 @@
                 Height="20"
                 Text="{Binding DistributorFunction, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="2">
+                <TextBox        
+                 Background="Transparent"
+                 BorderThickness="0"
+                 Text="Distribution company"
+                 IsReadOnly="True"
+                 HorizontalAlignment="Left"
+                 TextWrapping="Wrap" Height="20"/>
+                <TextBox
+                Height="20"
+                Text="{Binding DistributionCompany, UpdateSourceTrigger=PropertyChanged}" Width="143"/>
+            </StackPanel>
         </Grid>
         <StackPanel>
-            <Button Content="Ajouter un participant" Command="{Binding AddPeopleCommand}"/>
+            <Button Content="Ajouter un participant" Command="{Binding AddPeopleCommand}" Margin="0,0,0,10"/>
             <ItemsControl ItemsSource="{Binding PeopleCollection}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -136,14 +136,6 @@
                  HorizontalAlignment="Left"
                  TextWrapping="Wrap" Height="20"/>
                             <TextBox IsReadOnly="False" Height="20" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Width="143"/>
-                            <TextBox        
-                 Background="Transparent"
-                 BorderThickness="0"
-                 Text="Surname"
-                 IsReadOnly="True"
-                 HorizontalAlignment="Left"
-                 TextWrapping="Wrap" Height="20"/>
-                            <TextBox IsReadOnly="False" Height="20" Text="{Binding Surname}" Width="143"/>
                             <TextBox        
                  Background="Transparent"
                  BorderThickness="0"

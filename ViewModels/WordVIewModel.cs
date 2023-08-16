@@ -20,7 +20,7 @@ namespace MacValvesWordGenerate.ViewModels
         private string applicationInput;
         private string fileNeeded;
         private string distributorName;
-        private string distributorSurname;
+        private string distributionCompany;
         private string distributorFunction;
         private DateTime dateInput;
         private ObservableCollection<People> peopleCollection;
@@ -81,10 +81,11 @@ namespace MacValvesWordGenerate.ViewModels
             get => distributorName;
             set { distributorName = value; }
         }
-        public string DistributorSurname
+
+        public string DistributionCompany
         {
-            get => distributorSurname;
-            set { distributorSurname = value; }
+            get => distributionCompany;
+            set { distributionCompany = value; }
         }
         public string DistributorFunction
         {
@@ -106,7 +107,7 @@ namespace MacValvesWordGenerate.ViewModels
         private void AddPeople(object parameter)
         {
             NotifyPropertyChanged("PeopleCollection");
-            PeopleCollection.Add(new People("", "", "", ""));
+            PeopleCollection.Add(new People("", "", ""));
         }
 
 
@@ -152,7 +153,7 @@ namespace MacValvesWordGenerate.ViewModels
             string toReturn = "";
             foreach (People poeple in PeopleCollection)
             {
-                toReturn += "- " + poeple.Name + " " + poeple.Surname + " (" + poeple.Function + " - " + poeple.Customer + ")" + "\r";
+                toReturn += "- " + poeple.Name + " " + " (" + poeple.Function + " - " + poeple.Customer + ")" + "\r";
             }
             return toReturn;
         }
@@ -202,8 +203,8 @@ namespace MacValvesWordGenerate.ViewModels
             range.Find.Execute(FindText: "{{CITY}}", ReplaceWith: cityInput, Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{APPLICATION}}", ReplaceWith: applicationInput, Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{DistributorName}}", ReplaceWith: distributorName, Replace: WdReplace.wdReplaceAll);
-            range.Find.Execute(FindText: "{{DistributorSurname}}", ReplaceWith: distributorSurname, Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{DistributorFunction}}", ReplaceWith: distributorFunction, Replace: WdReplace.wdReplaceAll);
+            range.Find.Execute(FindText: "{{DistributionCompany}}", ReplaceWith: distributionCompany, Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{PARTICIPANTS}}", ReplaceWith: GeneratePeopleText(), Replace: WdReplace.wdReplaceAll);
             range.Find.Execute(FindText: "{{DATE}}", ReplaceWith: DateInput.ToString("dd/MM/yyyy"), Replace: WdReplace.wdReplaceAll);
         }
